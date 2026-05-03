@@ -1,0 +1,22 @@
+# ROS2 build artifacts
+pinky/build/
+pinky/install/
+pinky/log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Env
+venv/
+.env

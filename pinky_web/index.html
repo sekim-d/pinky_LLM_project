@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pinky 로봇 제어</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #7eb8f7; }
+    p.sub { color: #888; margin-bottom: 32px; font-size: 0.9rem; }
+
+    .card {
+      background: #1a1d27;
+      border: 1px solid #2a2d3a;
+      border-radius: 12px;
+      padding: 24px;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 12px 16px;
+      background: #0f1117;
+      border: 1px solid #3a3d4a;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+      outline: none;
+    }
+    input[type="text"]:focus { border-color: #7eb8f7; }
+    input[type="text"]::placeholder { color: #555; }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.85; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    #btn-send  { background: #7eb8f7; color: #0f1117; }
+    #btn-voice { background: #3a3d4a; color: #e0e0e0; font-size: 1.2rem; }
+    #btn-voice.listening { background: #e05c5c; animation: pulse 1s infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.6; }
+    }
+
+    .quick-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .quick-btn {
+      background: #2a2d3a;
+      color: #ccc;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+    .quick-btn:hover { background: #3a3d4a; }
+
+    .log {
+      width: 100%;
+      max-width: 600px;
+    }
+    .log h2 { font-size: 1rem; color: #888; margin-bottom: 12px; }
+    .log-entry {
+      background: #1a1d27;
+      border: 1px solid #2a2d3a;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .log-entry .user  { color: #7eb8f7; font-weight: 600; margin-bottom: 4px; }
+    .log-entry .json  { color: #a8d8a8; font-family: monospace; margin: 6px 0; white-space: pre-wrap; }
+    .log-entry .res   { color: #e0c97f; }
+    .log-entry .err   { color: #e05c5c; }
+    .status-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .dot-ok  { background: #4caf50; }
+    .dot-err { background: #e05c5c; }
+    .spinner { color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<h1>🤖 Pinky 로봇 제어</h1>
+<p class="sub">텍스트 또는 음성으로 로봇에게 명령하세요</p>
+
+<div class="card">
+  <div class="input-row">
+    <input id="cmd-input" type="text" placeholder="예: 앞으로 가, 테이블1로 가, 정지"/>
+    <button id="btn-voice" title="음성 입력">🎤</button>
+    <button id="btn-send">전송</button>
+  </div>
+  <div class="quick-btns">
+    <button class="quick-btn" onclick="send('앞으로 가')">앞으로</button>
+    <button class="quick-btn" onclick="send('뒤로 가')">뒤로</button>
+    <button class="quick-btn" onclick="send('왼쪽으로 가')">왼쪽</button>
+    <button class="quick-btn" onclick="send('오른쪽으로 가')">오른쪽</button>
+    <button class="quick-btn" onclick="send('정지')">⏹ 정지</button>
+    <button class="quick-btn" onclick="send('테이블1로 가')">테이블1</button>
+    <button class="quick-btn" onclick="send('충전소로 가')">충전소</button>
+  </div>
+</div>
+
+<div class="log">
+  <h2>실행 로그</h2>
+  <div id="log-list"></div>
+</div>
+
+<script>
+const input   = document.getElementById('cmd-input');
+const btnSend = document.getElementById('btn-send');
+const btnVoice= document.getElementById('btn-voice');
+const logList = document.getElementById('log-list');
+
+// ── 전송 ──────────────────────────────────────
+async function send(text) {
+  text = text || input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const entry = addLog(text);
+  setLoading(entry, true);
+  btnSend.disabled = true;
+
+  try {
+    const res  = await fetch('/command', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text }),
+    });
+    const data = await res.json();
+    setLoading(entry, false);
+
+    if (data.ok) {
+      entry.querySelector('.json').textContent =
+        JSON.stringify(data.llm_json, null, 2);
+      entry.querySelector('.res').innerHTML =
+        `<span class="status-dot dot-ok"></span>${data.result}`;
+    } else {
+      entry.querySelector('.json').textContent = '';
+      entry.querySelector('.res').innerHTML =
+        `<span class="status-dot dot-err"></span><span class="err">${data.error}</span>`;
+    }
+  } catch (e) {
+    setLoading(entry, false);
+    entry.querySelector('.res').innerHTML =
+      `<span class="status-dot dot-err"></span><span class="err">서버 연결 실패: ${e.message}</span>`;
+  }
+  btnSend.disabled = false;
+}
+
+function addLog(text) {
+  const el = document.createElement('div');
+  el.className = 'log-entry';
+  el.innerHTML = `
+    <div class="user">▶ ${text}</div>
+    <div class="json spinner">생각 중...</div>
+    <div class="res"></div>`;
+  logList.prepend(el);
+  return el;
+}
+
+function setLoading(entry, loading) {
+  const j = entry.querySelector('.json');
+  if (loading) {
+    j.textContent = '생각 중...';
+    j.classList.add('spinner');
+  } else {
+    j.classList.remove('spinner');
+  }
+}
+
+// ── 엔터키 ────────────────────────────────────
+input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+btnSend.addEventListener('click', () => send());
+
+// ── 음성 입력 ─────────────────────────────────
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (!SpeechRecognition) {
+  btnVoice.title   = '이 브라우저는 음성 인식을 지원하지 않습니다';
+  btnVoice.disabled = true;
+} else {
+  const recog = new SpeechRecognition();
+  recog.lang       = 'ko-KR';
+  recog.continuous = false;
+
+  recog.onresult = e => {
+    const text = e.results[0][0].transcript;
+    input.value = text;
+    send(text);
+  };
+  recog.onend   = () => btnVoice.classList.remove('listening');
+  recog.onerror = () => btnVoice.classList.remove('listening');
+
+  btnVoice.addEventListener('click', () => {
+    if (btnVoice.classList.contains('listening')) {
+      recog.stop();
+    } else {
+      btnVoice.classList.add('listening');
+      recog.start();
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<launch>
+  <arg name="world_name" default="pinky_restaurant.world"/>
+
+  <!-- 1. Gazebo 시뮬레이션 -->
+  <include file="$(find-pkg-share pinky_gazebo)/launch/launch_sim.launch.xml">
+    <arg name="world_name" value="$(var world_name)"/>
+  </include>
+
+  <!-- 2. map → odom 정적 TF -->
+  <node pkg="tf2_ros" exec="static_transform_publisher" name="map_to_odom"
+        args="0 0 0 0 0 0 map odom">
+    <param name="use_sim_time" value="true"/>
+  </node>
+
+  <!-- 3. PID Navigator -->
+  <include file="$(find-pkg-share pinky_simple_navigator)/launch/simple_drive.launch.xml">
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+</launch>
