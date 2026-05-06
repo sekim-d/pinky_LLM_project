@@ -255,6 +255,60 @@
     </link>
   </model>
 
+  <!-- 마커A: 앞벽(y=1.5)에 붙은 ArUco ID=0 — 로봇 접근 좌표: x=0.5, y=1.1, yaw=1.57 -->
+  <model name="marker_A">
+    <static>true</static>
+    <pose>0.5 1.492 0.2 0 0 0</pose>
+    <link name="marker_A_link">
+      <visual name="marker_A_visual">
+        <geometry>
+          <box><size>0.3 0.01 0.3</size></box>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>file://img/marker_0.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name="marker_A_collision">
+        <geometry>
+          <box><size>0.3 0.01 0.3</size></box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+
+  <!-- 마커B: 왼쪽벽(x=-2.0)에 붙은 ArUco ID=1 — 로봇 접근 좌표: x=-1.6, y=-0.5, yaw=3.14 -->
+  <model name="marker_B">
+    <static>true</static>
+    <pose>-1.992 -0.5 0.2 0 0 1.5708</pose>
+    <link name="marker_B_link">
+      <visual name="marker_B_visual">
+        <geometry>
+          <box><size>0.3 0.01 0.3</size></box>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>file://img/marker_1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name="marker_B_collision">
+        <geometry>
+          <box><size>0.3 0.01 0.3</size></box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+
   <model name="camera">
     <static>true</static>
       <pose>0 0 1.6 0 1.57 1.57</pose>
