@@ -1,0 +1,24 @@
+<launch>
+  <arg name="world_name" default="pinky_factory.world"/>
+
+  <!-- 1. Gazebo 시뮬레이션 -->
+  <include file="$(find-pkg-share pinky_gazebo)/launch/launch_sim.launch.xml">
+    <arg name="world_name" value="$(var world_name)"/>
+  </include>
+
+  <!-- 2. slam_toolbox: 맵 제작 + 위치 추정 동시 담당 (AMCL 대체)
+       mapping 모드: 실시간으로 맵을 그리면서 동시에 로봇 위치도 추정
+       → 사전 맵 없이도 즉시 동작, 좌표계 불일치 문제 없음 -->
+  <include file="$(find-pkg-share slam_toolbox)/launch/online_async_launch.py">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="slam_params_file" value="$(find-pkg-share pinky_navigation)/params/mapper_params.yaml"/>
+  </include>
+
+  <!-- 3. Nav2 내비게이션 (경로계획 + 장애물 회피)
+       map_server/amcl 제외 — slam_toolbox가 /map 토픽을 대신 제공 -->
+  <include file="$(find-pkg-share pinky_navigation)/launch/navigation_launch.xml">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="params_file" value="$(find-pkg-share pinky_navigation)/params/nav2_params.yaml"/>
+  </include>
+
+</launch>
