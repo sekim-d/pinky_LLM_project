@@ -1,11 +1,7 @@
-# 빌드 산출물
-pinky_LLM_project/pinky/build/
-pinky_LLM_project/pinky/install/
-pinky_LLM_project/pinky/log/
-pinky_LLM_project/build/
-pinky_LLM_project/install/
-pinky_LLM_project/log/
-pinky_LLM_project/pinky_web/__pycache__/
+# ROS2 빌드 산출물
+build/
+install/
+log/
 
 # Python
 __pycache__/
@@ -15,12 +11,9 @@ __pycache__/
 .venv/
 venv/
 
-# MediaMTX 바이너리 (용량 큼, 실행 시 자동 다운로드)
-pinky_camera/mediamtx
-
 # 지도 파일 (바이너리)
 *.pgm
 *.yaml
 
-# 기타
+# 환경 설정 (개인 IP 등)
 .env

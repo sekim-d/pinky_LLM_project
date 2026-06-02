@@ -2,7 +2,7 @@ services:
 
   # ── 카메라 서버 (UDP 스트리밍) ────────────────────────────
   camera:
-    build: ./pinky_camera
+    build: ./camera
     ports:
       - "9000:9000/udp"
     devices:
@@ -13,13 +13,39 @@ services:
 
   # ── LLM 웹 서버 (FastAPI) ────────────────────────────────
   llm-web:
-    build: ./pinky_LLM_project/pinky_web
+    build: ./llm/web
     ports:
       - "8080:8080"
     environment:
       - OLLAMA_URL=http://ollama:11434
+      - TASK_MANAGER_URL=http://${HOST_IP}:8090
+      - MODEL=qwen2.5:3b  # 파인튜닝 완료 후 pinky-warehouse로 변경
     depends_on:
       - ollama
+      - task-manager
+    restart: unless-stopped
+
+  # ── 태스크 매니저 (ROS2) ──────────────────────────────────
+  task-manager:
+    build: ./task_manager
+    network_mode: host
+    environment:
+      - ROS_DOMAIN_ID=99
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # ── MySQL DB ──────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root1234
+      - MYSQL_DATABASE=pinky_db
+      - MYSQL_USER=pinky
+      - MYSQL_PASSWORD=pinky1234
+    volumes:
+      - mysql_data:/var/lib/mysql
     restart: unless-stopped
 
   # ── Ollama LLM 서버 ───────────────────────────────────────
@@ -34,3 +60,4 @@ services:
 
 volumes:
   ollama_data:
+  mysql_data:

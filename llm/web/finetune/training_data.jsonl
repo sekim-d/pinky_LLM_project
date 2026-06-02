@@ -1,0 +1,51 @@
+{"messages": [{"role": "user", "content": "1번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_1\"}}"}]}
+{"messages": [{"role": "user", "content": "2번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_2\"}}"}]}
+{"messages": [{"role": "user", "content": "3번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_3\"}}"}]}
+{"messages": [{"role": "user", "content": "4번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_4\"}}"}]}
+{"messages": [{"role": "user", "content": "5번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_5\"}}"}]}
+{"messages": [{"role": "user", "content": "6번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_6\"}}"}]}
+{"messages": [{"role": "user", "content": "7번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_7\"}}"}]}
+{"messages": [{"role": "user", "content": "8번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_8\"}}"}]}
+{"messages": [{"role": "user", "content": "9번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_9\"}}"}]}
+{"messages": [{"role": "user", "content": "10번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_10\"}}"}]}
+{"messages": [{"role": "user", "content": "11번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_11\"}}"}]}
+{"messages": [{"role": "user", "content": "12번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_12\"}}"}]}
+{"messages": [{"role": "user", "content": "13번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_13\"}}"}]}
+{"messages": [{"role": "user", "content": "14번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_14\"}}"}]}
+{"messages": [{"role": "user", "content": "15번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_15\"}}"}]}
+{"messages": [{"role": "user", "content": "16번 렉에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_16\"}}"}]}
+{"messages": [{"role": "user", "content": "3번 랙으로 보내줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_3\"}}"}]}
+{"messages": [{"role": "user", "content": "7번 랙으로 보내"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_7\"}}"}]}
+{"messages": [{"role": "user", "content": "5번 랙에 적재해줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_5\"}}"}]}
+{"messages": [{"role": "user", "content": "12번 랙으로"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_12\"}}"}]}
+{"messages": [{"role": "user", "content": "2번 구역에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_2\"}}"}]}
+{"messages": [{"role": "user", "content": "9번 구역으로 보내"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_9\"}}"}]}
+{"messages": [{"role": "user", "content": "11번 구역에 적재"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_11\"}}"}]}
+{"messages": [{"role": "user", "content": "4번에 넣어줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_4\"}}"}]}
+{"messages": [{"role": "user", "content": "8번으로 보내줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_8\"}}"}]}
+{"messages": [{"role": "user", "content": "6번 입고해줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_6\"}}"}]}
+{"messages": [{"role": "user", "content": "15번 렉 입고"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_15\"}}"}]}
+{"messages": [{"role": "user", "content": "10번 렉으로 옮겨줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_10\"}}"}]}
+{"messages": [{"role": "user", "content": "1번 렉 적재 시작"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_1\"}}"}]}
+{"messages": [{"role": "user", "content": "13번 렉에 물건 넣어"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_13\"}}"}]}
+{"messages": [{"role": "user", "content": "16번 렉 작업 시작해줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_16\"}}"}]}
+{"messages": [{"role": "user", "content": "14번 렉에 올려줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_14\"}}"}]}
+{"messages": [{"role": "user", "content": "멈춰"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "정지"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "서"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "스톱"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "로봇 멈춰줘"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "일단 정지해"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"stop\"}}"}]}
+{"messages": [{"role": "user", "content": "충전소로 가줘"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"home\"}}"}]}
+{"messages": [{"role": "user", "content": "홈으로 복귀해"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"home\"}}"}]}
+{"messages": [{"role": "user", "content": "충전하러 가"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"charging\"}}"}]}
+{"messages": [{"role": "user", "content": "창고로 이동해줘"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"warehouse\"}}"}]}
+{"messages": [{"role": "user", "content": "입고구역으로 가줘"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"loading_zone\"}}"}]}
+{"messages": [{"role": "user", "content": "하역구역으로 이동"}, {"role": "assistant", "content": "{\"action\": \"navigate\", \"parameters\": {\"location\": \"unloading_zone\"}}"}]}
+{"messages": [{"role": "user", "content": "5번 렉이요"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_5\"}}"}]}
+{"messages": [{"role": "user", "content": "3번 렉 부탁해"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_3\"}}"}]}
+{"messages": [{"role": "user", "content": "이거 9번 렉에"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_9\"}}"}]}
+{"messages": [{"role": "user", "content": "빨리 7번 렉으로"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_7\"}}"}]}
+{"messages": [{"role": "user", "content": "2번 렉 작업"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_2\"}}"}]}
+{"messages": [{"role": "user", "content": "zone 4로 보내줘"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_4\"}}"}]}
+{"messages": [{"role": "user", "content": "zone_6에 넣어"}, {"role": "assistant", "content": "{\"action\": \"inbound_task\", \"parameters\": {\"storage_zone\": \"zone_6\"}}"}]}

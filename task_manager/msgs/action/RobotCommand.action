@@ -1,0 +1,11 @@
+# Goal (태스크매니저 → 로봇)
+string action_type
+string parameters_json
+string task_id
+---
+# Result (로봇 → 태스크매니저)
+string event
+string message
+---
+# Feedback (실행 중 진행 상황)
+string status

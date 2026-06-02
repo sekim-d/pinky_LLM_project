@@ -1,0 +1,6 @@
+FROM ./output/unsloth.Q4_K_M.gguf
+
+SYSTEM "당신은 물류창고 로봇 제어 AI입니다. JSON만 출력하세요."
+
+PARAMETER temperature 0.1
+PARAMETER num_predict 50
